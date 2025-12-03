@@ -1,57 +1,63 @@
-import { Github, Twitter, Mail, ExternalLink } from 'lucide-react';
-import TerminalHeader from './TerminalHeader';
+import ScrambleText from './ScrambleText';
 
-const socials = [
-  { icon: Github, label: 'GitHub', href: '#', username: '@yourusername' },
-  { icon: Twitter, label: 'Twitter', href: '#', username: '@yourusername' },
-  { icon: Mail, label: 'Email', href: 'mailto:you@email.com', username: 'you@email.com' },
-  { icon: ExternalLink, label: 'HackerOne', href: '#', username: '@yourusername' },
+const links = [
+  { label: 'HACKERONE', value: '@yourusername', href: 'https://hackerone.com/yourusername' },
+  { label: 'TWITTER', value: '@yourusername', href: 'https://twitter.com/yourusername' },
+  { label: 'GITHUB', value: '@yourusername', href: 'https://github.com/yourusername' },
+  { label: 'EMAIL', value: 'you@email.com', href: 'mailto:you@email.com' },
 ];
 
 const ContactSection = () => {
   return (
-    <section id="contact" className="py-24 px-6 md:px-12 lg:px-24 bg-muted/20">
-      <div className="max-w-2xl mx-auto">
-        <h2 className="text-2xl md:text-3xl font-bold mb-2 text-glow">
-          <span className="text-primary">#</span> Contact
-        </h2>
-        <p className="text-muted-foreground mb-12 text-sm">
-          // Get in touch
-        </p>
-        
-        <div className="bg-card border border-border overflow-hidden">
-          <TerminalHeader />
-          <div className="p-6 font-mono text-sm">
-            <p className="text-muted-foreground mb-4">
-              <span className="text-primary">$</span> cat contact.txt
+    <section id="contact" className="min-h-screen flex flex-col">
+      {/* Top divider */}
+      <div className="border-animated h-1" />
+      
+      <div className="flex-1 grid lg:grid-cols-2">
+        {/* Left - CTA */}
+        <div className="p-8 md:p-16 flex flex-col justify-center bg-primary">
+          <div className="text-primary-foreground">
+            <span className="text-xs tracking-widest block mb-4">INITIATE_CONTACT</span>
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-display font-black leading-none mb-8">
+              LET'S<br />
+              WORK<br />
+              <span className="text-background">TOGETHER</span>
+            </h2>
+            <p className="text-lg opacity-80 max-w-md">
+              Open for private bug bounty programs, security consulting, and penetration testing engagements.
             </p>
-            
-            <div className="space-y-3">
-              {socials.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.href}
-                  className="flex items-center gap-3 text-foreground hover:text-primary transition-colors group"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <social.icon className="w-4 h-4 text-muted-foreground group-hover:text-primary" />
-                  <span className="text-muted-foreground">{social.label}:</span>
-                  <span className="text-foreground group-hover:text-primary">{social.username}</span>
-                </a>
-              ))}
-            </div>
-            
-            <p className="mt-8 text-terminal-dim">
-              <span className="text-primary">$</span> echo "Open for private programs and collaborations"
-            </p>
-            <p className="text-foreground mt-2">
-              Open for private programs and collaborations
-            </p>
-            
-            <p className="mt-4 text-muted-foreground">
-              <span className="text-primary">$</span> <span className="animate-cursor-blink">█</span>
-            </p>
+          </div>
+        </div>
+
+        {/* Right - Links */}
+        <div className="p-8 md:p-16 flex flex-col justify-center bg-background">
+          <div className="space-y-0">
+            {links.map((link, index) => (
+              <a
+                key={index}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block border-b border-border py-6 transition-all hover:pl-4 hover:border-primary"
+              >
+                <span className="text-xs text-muted-foreground tracking-widest block mb-1">
+                  {link.label}
+                </span>
+                <span className="text-2xl md:text-3xl font-display font-bold text-foreground group-hover:text-primary transition-colors">
+                  <ScrambleText text={link.value} scrambleOnHover />
+                </span>
+              </a>
+            ))}
+          </div>
+
+          {/* PGP Key */}
+          <div className="mt-12 p-4 bg-card border border-border">
+            <span className="text-xs text-muted-foreground tracking-widest block mb-2">
+              PGP_FINGERPRINT
+            </span>
+            <code className="text-xs text-foreground break-all font-mono">
+              XXXX XXXX XXXX XXXX XXXX XXXX XXXX XXXX XXXX XXXX
+            </code>
           </div>
         </div>
       </div>
