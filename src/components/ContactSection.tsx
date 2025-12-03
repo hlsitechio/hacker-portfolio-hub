@@ -1,10 +1,9 @@
 import ScrambleText from './ScrambleText';
 
 const links = [
-  { label: 'HACKERONE', value: '@yourusername', href: 'https://hackerone.com/yourusername' },
-  { label: 'TWITTER', value: '@yourusername', href: 'https://twitter.com/yourusername' },
-  { label: 'GITHUB', value: '@yourusername', href: 'https://github.com/yourusername' },
-  { label: 'EMAIL', value: 'you@email.com', href: 'mailto:you@email.com' },
+  { label: 'HACKERONE', value: '@rainkode', href: 'https://hackerone.com/rainkode' },
+  { label: 'GITHUB', value: '@hlsitechio', href: 'https://github.com/hlsitechio' },
+  { label: 'EMAIL', value: 'rainkode@protonmail.com', href: 'mailto:rainkode@protonmail.com' },
 ];
 
 const ContactSection = () => {
