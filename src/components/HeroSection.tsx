@@ -1,63 +1,100 @@
-import TypewriterText from './TypewriterText';
-import GlitchText from './GlitchText';
-import { Shield, Bug, Lock } from 'lucide-react';
+import ASCIIArt from './ASCIIArt';
+import ScrambleText from './ScrambleText';
+import MarqueeBar from './MarqueeBar';
 
 const HeroSection = () => {
   return (
-    <section className="min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-24 relative overflow-hidden">
-      {/* Background grid effect */}
-      <div className="absolute inset-0 bg-[linear-gradient(hsl(var(--primary)/0.03)_1px,transparent_1px),linear-gradient(90deg,hsl(var(--primary)/0.03)_1px,transparent_1px)] bg-[size:50px_50px]" />
-      
-      {/* Floating icons */}
-      <div className="absolute top-20 right-20 opacity-10">
-        <Shield className="w-32 h-32 text-primary animate-pulse" />
+    <section className="min-h-screen relative flex flex-col">
+      {/* Top bar */}
+      <div className="border-b border-border p-4 flex justify-between items-center text-xs font-mono">
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-primary status-pulse" />
+            <span className="text-muted-foreground">ONLINE</span>
+          </div>
+          <span className="text-muted-foreground hidden sm:block">SYS.TIME: {new Date().toLocaleTimeString()}</span>
+        </div>
+        <div className="text-muted-foreground">
+          LOC: <span className="text-primary">UNDISCLOSED</span>
+        </div>
       </div>
-      <div className="absolute bottom-40 left-10 opacity-10">
-        <Bug className="w-24 h-24 text-secondary animate-pulse" />
+
+      <MarqueeBar />
+
+      {/* Main hero content */}
+      <div className="flex-1 grid lg:grid-cols-2 gap-0">
+        {/* Left side - Info */}
+        <div className="p-8 md:p-16 flex flex-col justify-center border-r border-border">
+          <div className="mb-8">
+            <ASCIIArt />
+          </div>
+          
+          <div className="space-y-6">
+            <div>
+              <span className="text-xs text-muted-foreground block mb-1">CODENAME</span>
+              <h1 className="text-4xl md:text-6xl font-display font-black tracking-tight">
+                <ScrambleText text="[REDACTED]" className="text-foreground" />
+              </h1>
+            </div>
+            
+            <div className="grid grid-cols-2 gap-4 text-sm">
+              <div>
+                <span className="text-muted-foreground block text-xs mb-1">SPECIALIZATION</span>
+                <span className="text-foreground">Web Application Security</span>
+              </div>
+              <div>
+                <span className="text-muted-foreground block text-xs mb-1">STATUS</span>
+                <span className="text-primary">Available for Private Programs</span>
+              </div>
+              <div>
+                <span className="text-muted-foreground block text-xs mb-1">RANK</span>
+                <span className="text-foreground">Top 1% HackerOne</span>
+              </div>
+              <div>
+                <span className="text-muted-foreground block text-xs mb-1">THREAT LEVEL</span>
+                <span className="text-destructive">CRITICAL</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Right side - Stats */}
+        <div className="p-8 md:p-16 flex flex-col justify-center bg-card">
+          <div className="space-y-8">
+            <div className="border-l-2 border-primary pl-6">
+              <div className="text-6xl md:text-8xl font-display font-black text-foreground">
+                150<span className="text-primary">+</span>
+              </div>
+              <div className="text-sm text-muted-foreground uppercase tracking-widest">
+                Vulnerabilities Discovered
+              </div>
+            </div>
+            
+            <div className="border-l-2 border-accent pl-6">
+              <div className="text-6xl md:text-8xl font-display font-black text-foreground">
+                $50K<span className="text-accent">+</span>
+              </div>
+              <div className="text-sm text-muted-foreground uppercase tracking-widest">
+                Total Bounties Earned
+              </div>
+            </div>
+            
+            <div className="border-l-2 border-secondary pl-6">
+              <div className="text-6xl md:text-8xl font-display font-black text-foreground">
+                25<span className="text-secondary">+</span>
+              </div>
+              <div className="text-sm text-muted-foreground uppercase tracking-widest">
+                Hall of Fame Features
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      
-      <div className="relative z-10 max-w-4xl">
-        <p className="text-muted-foreground mb-2 text-sm md:text-base">
-          <span className="text-primary">$</span> whoami
-        </p>
-        
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 text-glow">
-          <GlitchText text="HACKER" />
-        </h1>
-        
-        <div className="text-lg md:text-xl text-muted-foreground mb-8 h-8">
-          <TypewriterText 
-            text="Security Researcher • Bug Bounty Hunter • Penetration Tester" 
-            delay={40}
-          />
-        </div>
-        
-        <div className="flex flex-col gap-4 text-sm md:text-base font-mono">
-          <p className="text-terminal-dim">
-            <span className="text-primary">→</span> Specializing in web application security
-          </p>
-          <p className="text-terminal-dim">
-            <span className="text-secondary">→</span> Finding vulnerabilities since 2020
-          </p>
-          <p className="text-terminal-dim">
-            <span className="text-primary">→</span> Top 1% on HackerOne
-          </p>
-        </div>
-        
-        <div className="mt-12 flex gap-4 flex-wrap">
-          <a 
-            href="#contact" 
-            className="px-6 py-3 bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-all border-glow"
-          >
-            &gt; CONTACT_ME
-          </a>
-          <a 
-            href="#stats" 
-            className="px-6 py-3 border border-border text-foreground hover:border-primary hover:text-primary transition-all"
-          >
-            &gt; VIEW_STATS
-          </a>
-        </div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+        <span className="text-xs text-muted-foreground tracking-widest">SCROLL</span>
+        <div className="w-px h-8 bg-gradient-to-b from-primary to-transparent" />
       </div>
     </section>
   );
