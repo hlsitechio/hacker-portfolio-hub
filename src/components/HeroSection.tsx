@@ -33,7 +33,7 @@ const HeroSection = () => {
             <div>
               <span className="text-xs text-muted-foreground block mb-1">CODENAME</span>
               <h1 className="text-4xl md:text-6xl font-display font-black tracking-tight">
-                <ScrambleText text="[REDACTED]" className="text-foreground" />
+                <ScrambleText text="RAINKODE" className="text-foreground" />
               </h1>
             </div>
             
