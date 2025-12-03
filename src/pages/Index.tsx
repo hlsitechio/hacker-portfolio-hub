@@ -6,6 +6,7 @@ import TerminalSection from '@/components/TerminalSection';
 import FindingsSection from '@/components/FindingsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
+import MatrixBackground from '@/components/MatrixBackground';
 
 const Index = () => {
   const [showIntro, setShowIntro] = useState(true);
@@ -17,7 +18,8 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background crt">
+    <div className="min-h-screen bg-background crt relative">
+      <MatrixBackground />
       <CustomCursor />
       
       {showIntro && <IntroSequence onComplete={handleIntroComplete} />}
