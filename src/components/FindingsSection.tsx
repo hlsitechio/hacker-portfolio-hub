@@ -45,7 +45,7 @@ const FindingsSection = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   return (
-    <section className="py-24 bg-card">
+    <section className="py-24 bg-card/70 backdrop-blur-sm">
       {/* Section header */}
       <div className="px-8 md:px-16 mb-12">
         <motion.div 

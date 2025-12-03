@@ -18,7 +18,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background crt relative">
+    <div className="min-h-screen bg-transparent crt relative">
       <MatrixBackground />
       <CustomCursor />
       

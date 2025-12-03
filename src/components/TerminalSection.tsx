@@ -8,7 +8,7 @@ const commands = [
 
 const TerminalSection = () => {
   return (
-    <section className="py-24 px-8 md:px-16 bg-background">
+    <section className="py-24 px-8 md:px-16 bg-background/80 backdrop-blur-sm">
       <div className="max-w-4xl mx-auto">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}

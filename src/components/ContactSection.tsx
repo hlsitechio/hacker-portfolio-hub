@@ -80,7 +80,7 @@ const ContactSection = () => {
         </motion.div>
 
         {/* Right - Links */}
-        <div className="p-8 md:p-16 flex flex-col justify-center bg-background">
+        <div className="p-8 md:p-16 flex flex-col justify-center bg-background/80">
           <div className="space-y-0">
             {links.map((link, index) => (
               <motion.a
