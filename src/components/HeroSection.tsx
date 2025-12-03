@@ -5,7 +5,7 @@ import MarqueeBar from './MarqueeBar';
 
 const HeroSection = () => {
   return (
-    <section className="min-h-screen relative flex flex-col">
+    <section className="min-h-screen relative flex flex-col bg-background/80 backdrop-blur-sm">
       {/* Top bar */}
       <motion.div 
         initial={{ opacity: 0, y: -20 }}
@@ -79,7 +79,7 @@ const HeroSection = () => {
         </div>
 
         {/* Right side - Stats */}
-        <div className="p-8 md:p-16 flex flex-col justify-center bg-card">
+        <div className="p-8 md:p-16 flex flex-col justify-center bg-card/70">
           <div className="space-y-8">
             {[
               { value: '150', suffix: '+', color: 'border-primary', label: 'Vulnerabilities Discovered' },
