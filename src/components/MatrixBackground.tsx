@@ -3,11 +3,9 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 
 const MatrixBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
   
   const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], [0, 300]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.15, 0.08, 0.03]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, -200]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -18,7 +16,7 @@ const MatrixBackground = () => {
 
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight * 3;
+      canvas.height = window.innerHeight;
     };
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
@@ -28,42 +26,41 @@ const MatrixBackground = () => {
     
     const fontSize = 14;
     const columns = Math.floor(canvas.width / fontSize);
-    const drops: number[] = Array(columns).fill(1);
+    const drops: number[] = Array(columns).fill(0).map(() => Math.random() * -100);
 
     const draw = () => {
-      ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
+      ctx.fillStyle = 'rgba(10, 10, 10, 0.08)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.fillStyle = 'hsl(142, 100%, 50%)';
       ctx.font = `${fontSize}px monospace`;
 
       for (let i = 0; i < drops.length; i++) {
         const char = charArray[Math.floor(Math.random() * charArray.length)];
         const x = i * fontSize;
-        const y = drops[i] * fontSize;
+        const yPos = drops[i] * fontSize;
 
-        // Varying opacity for depth
-        const alpha = Math.random() * 0.5 + 0.1;
+        // Varying opacity for depth - very subtle
+        const alpha = Math.random() * 0.3 + 0.05;
         ctx.fillStyle = `hsla(142, 100%, 50%, ${alpha})`;
-        ctx.fillText(char, x, y);
+        ctx.fillText(char, x, yPos);
 
         // Add glow effect to some characters
-        if (Math.random() > 0.98) {
+        if (Math.random() > 0.995) {
           ctx.shadowColor = 'hsl(142, 100%, 50%)';
-          ctx.shadowBlur = 10;
-          ctx.fillStyle = 'hsl(142, 100%, 70%)';
-          ctx.fillText(char, x, y);
+          ctx.shadowBlur = 15;
+          ctx.fillStyle = 'hsla(142, 100%, 70%, 0.6)';
+          ctx.fillText(char, x, yPos);
           ctx.shadowBlur = 0;
         }
 
-        if (y > canvas.height && Math.random() > 0.975) {
+        if (yPos > canvas.height && Math.random() > 0.98) {
           drops[i] = 0;
         }
-        drops[i]++;
+        drops[i] += 0.5 + Math.random() * 0.5;
       }
     };
 
-    const interval = setInterval(draw, 50);
+    const interval = setInterval(draw, 45);
 
     return () => {
       clearInterval(interval);
@@ -72,19 +69,12 @@ const MatrixBackground = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-      <motion.div
-        style={{ y, opacity }}
-        className="absolute inset-0"
-      >
-        <canvas
-          ref={canvasRef}
-          className="w-full h-full"
-        />
-      </motion.div>
-      {/* Fade overlay at top and bottom */}
-      <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-background to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent" />
+    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+      <motion.canvas
+        ref={canvasRef}
+        style={{ y }}
+        className="w-full h-[120vh] opacity-[0.12]"
+      />
     </div>
   );
 };
