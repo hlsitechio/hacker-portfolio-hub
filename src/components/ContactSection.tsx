@@ -92,8 +92,8 @@ const ContactSection = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.15 }}
                 viewport={{ once: true }}
-                whileHover={{ x: 10, borderColor: 'hsl(var(--primary))' }}
-                className="group block border-b border-border py-6 transition-all"
+                whileHover={{ x: 10 }}
+                className="group block border-b border-border py-6 transition-all hover:border-primary"
               >
                 <span className="text-xs text-muted-foreground tracking-widest block mb-1">
                   {link.label}
