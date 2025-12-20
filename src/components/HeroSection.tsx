@@ -1,6 +1,4 @@
 import { motion } from 'framer-motion';
-import ASCIIArt from './ASCIIArt';
-import ScrambleText from './ScrambleText';
 import MarqueeBar from './MarqueeBar';
 
 const HeroSection = () => {
@@ -31,24 +29,15 @@ const HeroSection = () => {
       <div className="flex-1 grid lg:grid-cols-2 gap-0">
         {/* Left side - Info */}
         <div className="p-8 md:p-16 flex flex-col justify-center border-r border-border">
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="mb-8"
-          >
-            <ASCIIArt />
-          </motion.div>
-          
           <div className="space-y-6">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
-              <span className="text-xs text-muted-foreground block mb-1">CODENAME</span>
-              <h1 className="text-4xl md:text-6xl font-display font-black tracking-tight">
-                <ScrambleText text="RAINKODE" className="text-foreground" />
+              <span className="text-xs text-muted-foreground block mb-2">CODENAME</span>
+              <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-black tracking-tight cyberpunk-gradient-text">
+                RAINKODE
               </h1>
             </motion.div>
             
