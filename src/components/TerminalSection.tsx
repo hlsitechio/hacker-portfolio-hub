@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import hackerTerminalVideo from '@/assets/hacker-terminal.mp4';
 
 const TerminalSection = () => {
   return (
@@ -44,7 +45,7 @@ const TerminalSection = () => {
               }}
             >
               <source 
-                src="https://cdn.pixabay.com/video/2020/05/25/40130-424930301_large.mp4" 
+                src={hackerTerminalVideo} 
                 type="video/mp4" 
               />
             </video>
