@@ -1,11 +1,5 @@
 import { motion } from 'framer-motion';
 
-const commands = [
-  { cmd: 'cat skills.txt', output: ['WEB_APP_SECURITY', 'API_TESTING', 'OWASP_TOP_10', 'SQL_INJECTION', 'XSS_CSRF', 'IDOR', 'AUTH_BYPASS', 'BUSINESS_LOGIC'] },
-  { cmd: 'ls -la targets/', output: ['Fortune_500_Companies/', 'Major_Tech_Platforms/', 'Financial_Institutions/', 'E-commerce_Giants/', 'Social_Networks/'] },
-  { cmd: 'whoami', output: ['root // just kidding... unless?'] },
-];
-
 const TerminalSection = () => {
   return (
     <section className="py-24 px-8 md:px-16 bg-background/80 backdrop-blur-sm">
@@ -27,65 +21,66 @@ const TerminalSection = () => {
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true, margin: "-50px" }}
-          className="bg-card border border-border p-6 font-mono text-sm"
+          className="relative bg-black border border-primary/30 overflow-hidden rounded-lg shadow-[0_0_30px_rgba(0,255,0,0.1),inset_0_0_60px_rgba(0,0,0,0.8)]"
         >
           {/* Terminal header */}
-          <div className="flex items-center gap-2 mb-6 pb-4 border-b border-border">
-            <div className="w-3 h-3 rounded-full bg-destructive" />
-            <div className="w-3 h-3 rounded-full bg-secondary" />
-            <div className="w-3 h-3 rounded-full bg-primary" />
-            <span className="ml-4 text-muted-foreground text-xs">bash — 80x24</span>
+          <div className="flex items-center gap-2 p-4 border-b border-primary/20 bg-black/90 backdrop-blur-sm z-10 relative">
+            <div className="w-3 h-3 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.6)]" />
+            <div className="w-3 h-3 rounded-full bg-yellow-500 shadow-[0_0_8px_rgba(234,179,8,0.6)]" />
+            <div className="w-3 h-3 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]" />
+            <span className="ml-4 text-primary/60 text-xs font-mono">root@rainkode:~</span>
           </div>
 
-          {/* Commands */}
-          <div className="space-y-6">
-            {commands.map((command, index) => (
-              <motion.div 
-                key={index}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-                viewport={{ once: true }}
-              >
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-primary">→</span>
-                  <motion.span 
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ duration: 0.3, delay: index * 0.2 + 0.1 }}
-                    viewport={{ once: true }}
-                    className="text-foreground"
-                  >
-                    {command.cmd}
-                  </motion.span>
-                </div>
-                <div className="pl-6 text-muted-foreground">
-                  {command.output.map((line, i) => (
-                    <motion.div 
-                      key={i} 
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.3, delay: index * 0.2 + 0.2 + i * 0.05 }}
-                      viewport={{ once: true }}
-                      className="hover:text-primary transition-colors"
-                    >
-                      {line}
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-            
-            <motion.div 
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.8 }}
-              viewport={{ once: true }}
-              className="flex items-center gap-2"
+          {/* Video container */}
+          <div className="relative aspect-video">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+              style={{
+                filter: 'brightness(0.8) contrast(1.2) saturate(1.1)',
+              }}
             >
-              <span className="text-primary">→</span>
-              <span className="typing-cursor" />
-            </motion.div>
+              <source 
+                src="https://cdn.pixabay.com/video/2020/05/25/40130-424930301_large.mp4" 
+                type="video/mp4" 
+              />
+            </video>
+            
+            {/* Scanline overlay */}
+            <div 
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.15) 2px, rgba(0,0,0,0.15) 4px)',
+              }}
+            />
+            
+            {/* Vignette effect */}
+            <div 
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: 'radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.6) 100%)',
+              }}
+            />
+            
+            {/* Green glow overlay */}
+            <div 
+              className="absolute inset-0 pointer-events-none mix-blend-overlay"
+              style={{
+                background: 'linear-gradient(135deg, rgba(0,255,100,0.05) 0%, transparent 50%, rgba(0,200,255,0.05) 100%)',
+              }}
+            />
+          </div>
+
+          {/* Bottom terminal bar */}
+          <div className="p-3 bg-black/95 border-t border-primary/20 font-mono text-xs">
+            <div className="flex items-center gap-2 text-primary/80">
+              <span className="text-primary animate-pulse">▶</span>
+              <span className="text-muted-foreground">executing payload...</span>
+              <span className="typing-cursor ml-1" />
+            </div>
           </div>
         </motion.div>
       </div>
