@@ -77,7 +77,7 @@ const HeroSection = () => {
           >
             <span className="text-xs text-muted-foreground tracking-widest uppercase">Active On</span>
           </motion.div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="flex flex-col gap-3">
             {[
               { name: 'HACKERONE', color: 'from-[#494649] to-[#1a1a1a]', accent: '#00b81a', icon: 'H1' },
               { name: 'BUGCROWD', color: 'from-[#f26722] to-[#1a1a1a]', accent: '#f26722', icon: 'BC' },
@@ -86,11 +86,15 @@ const HeroSection = () => {
             ].map((platform, index) => (
               <motion.div
                 key={platform.name}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.7 + index * 0.15 }}
-                whileHover={{ scale: 1.05, boxShadow: `0 0 30px ${platform.accent}40` }}
-                className={`relative group bg-gradient-to-br ${platform.color} border border-border/50 p-6 cursor-pointer overflow-hidden`}
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ 
+                  duration: 0.5, 
+                  delay: 0.8 + index * 0.2,
+                  ease: [0.25, 0.46, 0.45, 0.94]
+                }}
+                whileHover={{ scale: 1.02, x: -8, boxShadow: `0 0 30px ${platform.accent}40` }}
+                className={`relative group bg-gradient-to-br ${platform.color} border border-border/50 p-4 cursor-pointer overflow-hidden flex items-center gap-4`}
               >
                 {/* Glow effect */}
                 <div 
@@ -100,32 +104,33 @@ const HeroSection = () => {
                 
                 {/* Icon */}
                 <div 
-                  className="text-3xl md:text-4xl font-display font-black mb-2"
+                  className="text-2xl md:text-3xl font-display font-black shrink-0"
                   style={{ color: platform.accent }}
                 >
                   {platform.icon}
                 </div>
                 
                 {/* Name */}
-                <div className="text-xs font-mono text-foreground tracking-wider">
+                <div className="text-sm font-mono text-foreground tracking-wider flex-1">
                   {platform.name}
                 </div>
                 
                 {/* Status indicator */}
-                <div className="absolute top-3 right-3 flex items-center gap-1">
+                <div className="flex items-center gap-2">
                   <div 
-                    className="w-1.5 h-1.5 rounded-full animate-pulse"
+                    className="w-2 h-2 rounded-full animate-pulse"
                     style={{ backgroundColor: platform.accent }}
                   />
-                  <span className="text-[10px] text-muted-foreground">ACTIVE</span>
+                  <span className="text-xs text-muted-foreground">ACTIVE</span>
                 </div>
                 
-                {/* Corner accent */}
-                <div 
-                  className="absolute bottom-0 right-0 w-12 h-12 opacity-10"
-                  style={{ 
-                    background: `linear-gradient(135deg, transparent 50%, ${platform.accent} 50%)` 
-                  }}
+                {/* Slide-in accent bar */}
+                <motion.div 
+                  className="absolute left-0 top-0 bottom-0 w-1"
+                  initial={{ scaleY: 0 }}
+                  animate={{ scaleY: 1 }}
+                  transition={{ duration: 0.3, delay: 1.1 + index * 0.2 }}
+                  style={{ backgroundColor: platform.accent, transformOrigin: 'top' }}
                 />
               </motion.div>
             ))}
