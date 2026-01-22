@@ -1,49 +1,18 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
 import ScrambleText from './ScrambleText';
 
-const findings = [
-  {
-    id: '001',
-    severity: 'CRITICAL',
-    severityColor: 'bg-destructive',
-    title: 'Authentication Bypass via JWT Manipulation',
-    target: 'FORTUNE_500_CORP',
-    bounty: '$10,000',
-    impact: 'Full account takeover of any user including admins',
-  },
-  {
-    id: '002',
-    severity: 'HIGH',
-    severityColor: 'bg-secondary',
-    title: 'SQL Injection in Search Parameter',
-    target: 'MAJOR_TECH_PLATFORM',
-    bounty: '$5,000',
-    impact: 'Database extraction, potential RCE',
-  },
-  {
-    id: '003',
-    severity: 'HIGH',
-    severityColor: 'bg-secondary',
-    title: 'IDOR Leading to Mass Data Exposure',
-    target: 'ECOMMERCE_GIANT',
-    bounty: '$7,500',
-    impact: '2M+ user records accessible',
-  },
-  {
-    id: '004',
-    severity: 'CRITICAL',
-    severityColor: 'bg-destructive',
-    title: 'RCE via Unsafe Deserialization',
-    target: 'FINTECH_STARTUP',
-    bounty: '$15,000',
-    impact: 'Full server compromise',
-  },
+const activeBounties = [
+  { name: 'COINBASE', color: '#0052FF', status: 'HUNTING' },
+  { name: 'CRYPTO.COM', color: '#002D74', status: 'ACTIVE' },
+  { name: 'FACEBOOK', color: '#1877F2', status: 'HUNTING' },
+  { name: 'AMAZON', color: '#FF9900', status: 'ACTIVE' },
+  { name: 'NETFLIX', color: '#E50914', status: 'HUNTING' },
+  { name: 'TESLA', color: '#CC0000', status: 'ACTIVE' },
+  { name: 'UBER', color: '#000000', status: 'HUNTING' },
+  { name: 'META', color: '#0082FB', status: 'ACTIVE' },
 ];
 
 const FindingsSection = () => {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-
   return (
     <section className="py-24 bg-card/70 backdrop-blur-sm">
       {/* Section header */}
@@ -56,86 +25,100 @@ const FindingsSection = () => {
           className="flex items-end justify-between border-b border-border pb-4"
         >
           <div>
-            <span className="text-xs text-muted-foreground tracking-widest block mb-2">FILE://DISCLOSURES</span>
+            <span className="text-xs text-muted-foreground tracking-widest block mb-2">FILE://CURRENT_TARGETS</span>
             <h2 className="text-3xl md:text-5xl font-display font-black">
-              <ScrambleText text="NOTABLE FINDINGS" scrambleOnHover />
+              <ScrambleText text="LIVE BOUNTY ACTIVITIES" scrambleOnHover />
             </h2>
           </div>
           <div className="text-right hidden md:block">
-            <span className="text-xs text-muted-foreground">TOTAL IMPACT</span>
-            <div className="text-2xl font-display font-bold text-primary">$37,500</div>
+            <span className="text-xs text-muted-foreground">ACTIVE PROGRAMS</span>
+            <div className="text-2xl font-display font-bold text-primary">{activeBounties.length}</div>
           </div>
         </motion.div>
       </div>
 
-      {/* Findings grid */}
-      <div className="px-8 md:px-16 space-y-px">
-        {findings.map((finding, index) => (
-          <motion.div
-            key={finding.id}
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            viewport={{ once: true, margin: "-50px" }}
-            whileHover={{ x: 10 }}
-            className={`
-              group bg-background border-l-4 
-              ${finding.severityColor} 
-              hover:bg-muted/30
-            `}
-            onMouseEnter={() => setActiveIndex(index)}
-            onMouseLeave={() => setActiveIndex(null)}
-          >
-            <div className="p-6 md:p-8 grid md:grid-cols-12 gap-4 items-center">
-              {/* ID */}
-              <div className="md:col-span-1 font-mono text-muted-foreground">
-                #{finding.id}
-              </div>
-              
-              {/* Severity */}
-              <div className="md:col-span-2">
-                <span className={`
-                  inline-block px-3 py-1 text-xs font-bold tracking-wider
-                  ${finding.severity === 'CRITICAL' ? 'bg-destructive/20 text-destructive' : 'bg-secondary/20 text-secondary'}
-                `}>
-                  {finding.severity}
-                </span>
-              </div>
-              
-              {/* Title & Impact */}
-              <div className="md:col-span-5">
-                <div className="font-bold text-foreground group-hover:text-primary transition-colors">
-                  {finding.title}
-                </div>
-                <motion.div 
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ 
-                    height: activeIndex === index ? 'auto' : 0,
-                    opacity: activeIndex === index ? 1 : 0
-                  }}
-                  className="text-sm text-muted-foreground mt-1 overflow-hidden md:h-auto md:opacity-100"
-                >
-                  {finding.impact}
-                </motion.div>
-              </div>
-              
-              {/* Target */}
-              <div className="md:col-span-2 font-mono text-xs text-muted-foreground">
-                {finding.target}
-              </div>
-              
-              {/* Bounty */}
+      {/* Bounties grid */}
+      <div className="px-8 md:px-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {activeBounties.map((bounty, index) => (
+            <motion.div
+              key={bounty.name}
+              initial={{ opacity: 0, scale: 0.8, y: 20 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ 
+                duration: 0.5, 
+                delay: index * 0.1,
+                ease: [0.25, 0.46, 0.45, 0.94]
+              }}
+              viewport={{ once: true, margin: "-50px" }}
+              whileHover={{ 
+                scale: 1.05, 
+                y: -5,
+                boxShadow: `0 20px 40px ${bounty.color}30`
+              }}
+              className="relative group bg-background border border-border p-6 cursor-pointer overflow-hidden"
+            >
+              {/* Animated border glow */}
               <motion.div 
-                className="md:col-span-2 text-right"
-                whileHover={{ scale: 1.1 }}
-              >
-                <span className="text-2xl font-display font-bold text-primary">
-                  {finding.bounty}
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                style={{ 
+                  background: `linear-gradient(135deg, ${bounty.color}20, transparent 50%, ${bounty.color}10)`,
+                }}
+              />
+              
+              {/* Top accent line */}
+              <motion.div 
+                className="absolute top-0 left-0 right-0 h-1"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
+                viewport={{ once: true }}
+                style={{ backgroundColor: bounty.color, transformOrigin: 'left' }}
+              />
+              
+              {/* Status indicator */}
+              <div className="flex items-center gap-2 mb-4">
+                <motion.div 
+                  className="w-2 h-2 rounded-full"
+                  animate={{ 
+                    opacity: [1, 0.3, 1],
+                    scale: [1, 0.8, 1]
+                  }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                  style={{ backgroundColor: bounty.color }}
+                />
+                <span className="text-[10px] text-muted-foreground tracking-widest">
+                  {bounty.status}
                 </span>
-              </motion.div>
-            </div>
-          </motion.div>
-        ))}
+              </div>
+              
+              {/* Company name */}
+              <div 
+                className="text-lg md:text-xl font-display font-black tracking-tight group-hover:tracking-wide transition-all duration-300"
+                style={{ color: bounty.color }}
+              >
+                {bounty.name}
+              </div>
+              
+              {/* Scan line effect */}
+              <motion.div 
+                className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100"
+                style={{
+                  background: `linear-gradient(transparent 0%, ${bounty.color}10 50%, transparent 100%)`,
+                  backgroundSize: '100% 8px',
+                }}
+              />
+              
+              {/* Corner decoration */}
+              <div 
+                className="absolute bottom-0 right-0 w-8 h-8 opacity-20 group-hover:opacity-40 transition-opacity"
+                style={{ 
+                  background: `linear-gradient(135deg, transparent 50%, ${bounty.color} 50%)` 
+                }}
+              />
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
