@@ -4,7 +4,7 @@ import ScrambleText from './ScrambleText';
 import SpaceInvaders from './SpaceInvaders';
 import xLogo from '@/assets/logos/x.svg';
 import kaliLogo from '@/assets/logos/kali.svg';
-import blackarchLogo from '@/assets/logos/blackarch.png';
+import blackarchLogo from '@/assets/logos/blackarch.svg';
 import parrotLogo from '@/assets/logos/parrot.svg';
 
 const links = [
@@ -145,7 +145,7 @@ const ContactSection = () => {
               className="mt-10"
             >
               <span className="text-xs tracking-widest block mb-4 opacity-70">OS_&_ENVIRONMENT</span>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex gap-3 overflow-x-auto">
                 {operatingSystems.map((os, index) => (
                   <motion.div
                     key={os.name}
