@@ -4,7 +4,7 @@ import SpaceInvaders from './SpaceInvaders';
 
 const links = [
   { label: 'HACKERONE', value: '@rainkode', href: 'https://hackerone.com/rainkode' },
-  { label: 'GITHUB', value: '@hlsitechio', href: 'https://github.com/hlsitechio' },
+  { label: 'X', value: '@rainkode174818', href: 'https://x.com/rainkode174818' },
   { label: 'EMAIL', value: 'rainkode@protonmail.com', href: 'mailto:rainkode@protonmail.com' },
 ];
 
