@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Radar, Target, Globe, Code, ShieldAlert } from 'lucide-react';
 import ScrambleText from './ScrambleText';
 import SpaceInvaders from './SpaceInvaders';
 import xLogo from '@/assets/logos/x.svg';
@@ -7,6 +8,14 @@ const links = [
   { label: 'HACKERONE', value: '@rainkode', href: 'https://hackerone.com/rainkode' },
   { label: 'X', value: 'rainkode', href: 'https://x.com/rainkode174818', isLogo: true },
   { label: 'EMAIL', value: 'rainkode@protonmail.com', href: 'mailto:rainkode@protonmail.com' },
+];
+
+const tools = [
+  { name: 'NMAP', icon: Radar },
+  { name: 'NUCLEI', icon: Target },
+  { name: 'CORS', icon: Globe },
+  { name: 'BLIND XSS', icon: Code },
+  { name: 'AUTH VULN', icon: ShieldAlert },
 ];
 
 const ContactSection = () => {
@@ -80,6 +89,33 @@ const ContactSection = () => {
             >
               Open for private bug bounty programs, security consulting, and penetration testing engagements.
             </motion.p>
+
+            {/* Tools Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.8 }}
+              viewport={{ once: true }}
+              className="mt-10"
+            >
+              <span className="text-xs tracking-widest block mb-4 opacity-70">TOOLS_I_USE</span>
+              <div className="flex flex-wrap gap-3">
+                {tools.map((tool, index) => (
+                  <motion.div
+                    key={tool.name}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3, delay: 0.9 + index * 0.1 }}
+                    viewport={{ once: true }}
+                    whileHover={{ scale: 1.1, y: -2 }}
+                    className="flex flex-col items-center gap-1 p-3 bg-background/20 border border-primary-foreground/20 backdrop-blur-sm hover:border-primary-foreground/50 transition-colors"
+                  >
+                    <tool.icon className="w-6 h-6 text-primary-foreground" />
+                    <span className="text-[10px] tracking-wider text-primary-foreground/80 font-mono">{tool.name}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
           </div>
         </motion.div>
 
