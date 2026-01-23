@@ -3,11 +3,20 @@ import { Radar, Target, Globe, Code, ShieldAlert, Search, Bug, Skull, Network, S
 import ScrambleText from './ScrambleText';
 import SpaceInvaders from './SpaceInvaders';
 import xLogo from '@/assets/logos/x.svg';
+import kaliLogo from '@/assets/logos/kali.svg';
+import blackarchLogo from '@/assets/logos/blackarch.png';
+import parrotLogo from '@/assets/logos/parrot.svg';
 
 const links = [
   { label: 'HACKERONE', value: '@rainkode', href: 'https://hackerone.com/rainkode' },
   { label: 'X', value: 'rainkode', href: 'https://x.com/rainkode174818', isLogo: true },
   { label: 'EMAIL', value: 'rainkode@protonmail.com', href: 'mailto:rainkode@protonmail.com' },
+];
+
+const operatingSystems = [
+  { name: 'KALI LINUX', logo: kaliLogo },
+  { name: 'BLACKARCH', logo: blackarchLogo },
+  { name: 'PARROT OS', logo: parrotLogo },
 ];
 
 const toolCategories = [
@@ -127,13 +136,40 @@ const ContactSection = () => {
               Open for private bug bounty programs, security consulting, and penetration testing engagements.
             </motion.p>
 
-            {/* Tools Section */}
+            {/* OS & Environment Section */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.8 }}
               viewport={{ once: true }}
               className="mt-10"
+            >
+              <span className="text-xs tracking-widest block mb-4 opacity-70">OS_&_ENVIRONMENT</span>
+              <div className="flex flex-wrap gap-3">
+                {operatingSystems.map((os, index) => (
+                  <motion.div
+                    key={os.name}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3, delay: 0.9 + index * 0.1 }}
+                    viewport={{ once: true }}
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    className="flex items-center gap-3 px-4 py-3 bg-background/20 border border-primary-foreground/20 backdrop-blur-sm hover:border-primary-foreground/50 transition-colors"
+                  >
+                    <img src={os.logo} alt={os.name} className="w-8 h-8 object-contain" />
+                    <span className="text-sm tracking-wider text-primary-foreground/90 font-mono">{os.name}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Tools Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.0 }}
+              viewport={{ once: true }}
+              className="mt-8"
             >
               <span className="text-xs tracking-widest block mb-6 opacity-70">ARSENAL_</span>
               <div className="space-y-4">
@@ -142,7 +178,7 @@ const ContactSection = () => {
                     key={category.category}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.4, delay: 0.9 + catIndex * 0.1 }}
+                    transition={{ duration: 0.4, delay: 1.1 + catIndex * 0.1 }}
                     viewport={{ once: true }}
                   >
                     <span className="text-[10px] tracking-widest text-primary-foreground/50 block mb-2 font-mono">
@@ -154,7 +190,7 @@ const ContactSection = () => {
                           key={tool.name}
                           initial={{ opacity: 0, scale: 0.8 }}
                           whileInView={{ opacity: 1, scale: 1 }}
-                          transition={{ duration: 0.2, delay: 1 + catIndex * 0.1 + index * 0.05 }}
+                          transition={{ duration: 0.2, delay: 1.2 + catIndex * 0.1 + index * 0.05 }}
                           viewport={{ once: true }}
                           whileHover={{ scale: 1.05, y: -2 }}
                           className="flex items-center gap-3 px-4 py-3 bg-background/20 border border-primary-foreground/20 backdrop-blur-sm hover:border-primary-foreground/50 transition-colors"
