@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Radar, Target, Globe, Code, ShieldAlert, Search, Bug, Skull } from 'lucide-react';
+import { Radar, Target, Globe, Code, ShieldAlert, Search, Bug, Skull, Network, Scan, KeyRound, Terminal, Fingerprint, Crosshair, Zap } from 'lucide-react';
 import ScrambleText from './ScrambleText';
 import SpaceInvaders from './SpaceInvaders';
 import xLogo from '@/assets/logos/x.svg';
@@ -10,15 +10,47 @@ const links = [
   { label: 'EMAIL', value: 'rainkode@protonmail.com', href: 'mailto:rainkode@protonmail.com' },
 ];
 
-const tools = [
-  { name: 'NMAP', icon: Radar },
-  { name: 'NUCLEI', icon: Target },
-  { name: 'CORS', icon: Globe },
-  { name: 'BLIND XSS', icon: Code },
-  { name: 'AUTH VULN', icon: ShieldAlert },
-  { name: 'SHODAN', icon: Search },
-  { name: 'BURP', icon: Bug },
-  { name: 'METASPLOIT', icon: Skull },
+const toolCategories = [
+  {
+    category: 'RECON',
+    tools: [
+      { name: 'NMAP', icon: Radar },
+      { name: 'SHODAN', icon: Search },
+      { name: 'AMASS', icon: Network },
+      { name: 'SUBFINDER', icon: Fingerprint },
+    ]
+  },
+  {
+    category: 'SCANNING',
+    tools: [
+      { name: 'NUCLEI', icon: Target },
+      { name: 'NIKTO', icon: Scan },
+      { name: 'MASSCAN', icon: Zap },
+    ]
+  },
+  {
+    category: 'EXPLOITATION',
+    tools: [
+      { name: 'METASPLOIT', icon: Skull },
+      { name: 'BURP SUITE', icon: Bug },
+      { name: 'SQLMAP', icon: Terminal },
+    ]
+  },
+  {
+    category: 'WEB_ATTACKS',
+    tools: [
+      { name: 'BLIND XSS', icon: Code },
+      { name: 'CORS', icon: Globe },
+      { name: 'FFUF', icon: Crosshair },
+    ]
+  },
+  {
+    category: 'AUTH_BYPASS',
+    tools: [
+      { name: 'HYDRA', icon: KeyRound },
+      { name: 'AUTH VULN', icon: ShieldAlert },
+    ]
+  },
 ];
 
 const ContactSection = () => {
@@ -101,20 +133,35 @@ const ContactSection = () => {
               viewport={{ once: true }}
               className="mt-10"
             >
-              <span className="text-xs tracking-widest block mb-4 opacity-70">TOOLS_I_USE</span>
-              <div className="flex flex-wrap gap-3">
-                {tools.map((tool, index) => (
+              <span className="text-xs tracking-widest block mb-6 opacity-70">ARSENAL_</span>
+              <div className="space-y-4">
+                {toolCategories.map((category, catIndex) => (
                   <motion.div
-                    key={tool.name}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.3, delay: 0.9 + index * 0.1 }}
+                    key={category.category}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: 0.9 + catIndex * 0.1 }}
                     viewport={{ once: true }}
-                    whileHover={{ scale: 1.1, y: -2 }}
-                    className="flex flex-col items-center gap-2 p-4 bg-background/20 border border-primary-foreground/20 backdrop-blur-sm hover:border-primary-foreground/50 transition-colors"
                   >
-                    <tool.icon className="w-10 h-10 text-primary-foreground" />
-                    <span className="text-xs tracking-wider text-primary-foreground/80 font-mono">{tool.name}</span>
+                    <span className="text-[10px] tracking-widest text-primary-foreground/50 block mb-2 font-mono">
+                      {'>'} {category.category}
+                    </span>
+                    <div className="flex flex-wrap gap-2">
+                      {category.tools.map((tool, index) => (
+                        <motion.div
+                          key={tool.name}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.2, delay: 1 + catIndex * 0.1 + index * 0.05 }}
+                          viewport={{ once: true }}
+                          whileHover={{ scale: 1.05, y: -2 }}
+                          className="flex items-center gap-2 px-3 py-2 bg-background/20 border border-primary-foreground/20 backdrop-blur-sm hover:border-primary-foreground/50 transition-colors"
+                        >
+                          <tool.icon className="w-5 h-5 text-primary-foreground" />
+                          <span className="text-[11px] tracking-wider text-primary-foreground/90 font-mono">{tool.name}</span>
+                        </motion.div>
+                      ))}
+                    </div>
                   </motion.div>
                 ))}
               </div>
