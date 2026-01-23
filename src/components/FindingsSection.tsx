@@ -4,38 +4,28 @@ import ScrambleText from './ScrambleText';
 // Import downloaded logos
 import coinbaseLogo from '@/assets/logos/coinbase.svg';
 import facebookLogo from '@/assets/logos/facebook.svg';
+import amazonLogo from '@/assets/logos/amazon.svg';
 import netflixLogo from '@/assets/logos/netflix.svg';
 import teslaLogo from '@/assets/logos/tesla.svg';
 import uberLogo from '@/assets/logos/uber.svg';
+import metaLogo from '@/assets/logos/meta.svg';
 
-// Inline SVG components for logos we couldn't download
+// Crypto.com logo SVG (official design)
 const CryptoLogo = () => (
-  <svg viewBox="0 0 24 24" className="w-8 h-8" fill="currentColor">
-    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 3.6c4.64 0 8.4 3.76 8.4 8.4 0 4.64-3.76 8.4-8.4 8.4-4.64 0-8.4-3.76-8.4-8.4 0-4.64 3.76-8.4 8.4-8.4zm0 2.4a6 6 0 100 12 6 6 0 000-12z"/>
-  </svg>
-);
-
-const AmazonLogo = () => (
-  <svg viewBox="0 0 24 24" className="w-8 h-8" fill="currentColor">
-    <path d="M.045 18.02c.072-.116.187-.124.348-.022 3.636 2.11 7.594 3.166 11.87 3.166 2.852 0 5.668-.533 8.447-1.595.379-.144.734-.36.92.044.187.404-.117.696-.424.907-2.882 1.98-6.189 2.97-9.928 2.97-4.376 0-8.347-1.392-11.896-4.175-.16-.127-.192-.247-.097-.363zm12.82-2.04c-.384-.476-1.196-.69-2.44-.645-1.226.045-2.096.184-2.608.417-.168.076-.176.15-.025.22.162.075.47.206.92.393.45.187.708.32.772.396.064.077.03.2-.1.367-.518.665-.778 1.653-.778 2.96 0 .283.014.507.04.67.027.163.083.337.17.52.086.183.16.32.223.411.064.09.183.2.358.33.175.13.3.216.37.258.073.043.23.105.47.188l.53.18c.305.1.491.162.56.182.069.02.19.04.364.06.174.02.293.03.356.03.24 0 .474-.02.704-.064.23-.043.458-.125.686-.247.228-.122.424-.276.59-.46.165-.186.274-.39.325-.615.05-.224.075-.422.075-.594 0-.45-.11-.877-.328-1.282-.22-.404-.458-.79-.72-1.154l-.448-.605c-.146-.2-.22-.343-.22-.433 0-.2.18-.474.54-.823.36-.35.822-.666 1.386-.95.563-.285.955-.51 1.176-.68.22-.168.33-.306.33-.412 0-.088-.058-.196-.174-.323-.116-.126-.27-.237-.46-.333-.19-.096-.365-.17-.522-.223-.158-.052-.366-.092-.626-.12-.26-.027-.444-.04-.553-.04-.687 0-1.335.103-1.94.31z"/>
-  </svg>
-);
-
-const MetaLogo = () => (
-  <svg viewBox="0 0 24 24" className="w-8 h-8" fill="currentColor">
-    <path d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973.327 1.395.938 2.533 1.834 3.31.889.772 1.95 1.159 3.098 1.159 1.237 0 2.354-.395 3.407-1.162.17-.124.34-.258.508-.403.186.149.38.291.58.423 1.063.702 2.196 1.075 3.381 1.075 1.153 0 2.213-.39 3.1-1.16.892-.772 1.503-1.907 1.832-3.308.14-.604.21-1.267.21-1.973 0-2.566-.703-5.241-2.044-7.303C14.952 5.31 13.237 4.03 11.27 4.03c-1.283 0-2.405.427-3.427 1.234a9.093 9.093 0 0 0-.928.877 9.1 9.1 0 0 0-.928-.877C4.965 4.457 3.843 4.03 2.56 4.03zM9 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm12 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+  <svg viewBox="0 0 24 24" className="w-10 h-10" fill="#002D74">
+    <path d="M12.0002 0C5.3732 0 .0002 5.373.0002 12s5.373 12 12 12 12-5.373 12-12S18.6272 0 12.0002 0zm5.2442 8.865v6.2632c-.0039.0878-.0168.1746-.0384.2593l-.0192.0734-.0244.0643a.9166.9166 0 0 1-.0996.2002.852.852 0 0 1-.1169.1425.7995.7995 0 0 1-.2362.1695l-4.1738 2.3967a.9659.9659 0 0 1-.2668.1169 1.0128 1.0128 0 0 1-.5765 0 .9672.9672 0 0 1-.2669-.117l-4.1786-2.4a.7823.7823 0 0 1-.2351-.1686.8535.8535 0 0 1-.1174-.1424.9193.9193 0 0 1-.1587-.5369V8.865a.9143.9143 0 0 1 .0383-.2593l.0197-.0739.0239-.0638a.9134.9134 0 0 1 .1-.2002.8573.8573 0 0 1 .1169-.1424.7823.7823 0 0 1 .2356-.1686l4.1781-2.4a.9766.9766 0 0 1 .2674-.117 1.0127 1.0127 0 0 1 .5764 0c.0932.0263.1827.0648.2664.1165l4.1786 2.4a.8.8 0 0 1 .2357.1691.8577.8577 0 0 1 .1169.1424.9179.9179 0 0 1 .0996.2002l.0244.0638.0192.0739c.0216.0847.0345.1715.0384.2593zm-1.4762 5.7354v-5.2032l-3.548-2.04v2.502l2.078 1.1978v3.5426z"/>
   </svg>
 );
 
 const activeBounties = [
-  { name: 'COINBASE', color: '#0052FF', status: 'HUNTING', logo: coinbaseLogo, isImage: true },
-  { name: 'CRYPTO.COM', color: '#002D74', status: 'ACTIVE', Logo: CryptoLogo, isImage: false },
-  { name: 'FACEBOOK', color: '#1877F2', status: 'HUNTING', logo: facebookLogo, isImage: true },
-  { name: 'AMAZON', color: '#FF9900', status: 'ACTIVE', Logo: AmazonLogo, isImage: false },
-  { name: 'NETFLIX', color: '#E50914', status: 'HUNTING', logo: netflixLogo, isImage: true },
-  { name: 'TESLA', color: '#CC0000', status: 'ACTIVE', logo: teslaLogo, isImage: true },
-  { name: 'UBER', color: '#000000', status: 'HUNTING', logo: uberLogo, isImage: true },
-  { name: 'META', color: '#0082FB', status: 'ACTIVE', Logo: MetaLogo, isImage: false },
+  { name: 'COINBASE', color: '#0052FF', status: 'HUNTING', logo: coinbaseLogo },
+  { name: 'CRYPTO.COM', color: '#002D74', status: 'ACTIVE', Logo: CryptoLogo, isComponent: true },
+  { name: 'FACEBOOK', color: '#1877F2', status: 'HUNTING', logo: facebookLogo },
+  { name: 'AMAZON', color: '#FF9900', status: 'ACTIVE', logo: amazonLogo },
+  { name: 'NETFLIX', color: '#E50914', status: 'HUNTING', logo: netflixLogo },
+  { name: 'TESLA', color: '#CC0000', status: 'ACTIVE', logo: teslaLogo },
+  { name: 'UBER', color: '#FFFFFF', status: 'HUNTING', logo: uberLogo },
+  { name: 'META', color: '#0082FB', status: 'ACTIVE', logo: metaLogo },
 ];
 
 const FindingsSection = () => {
@@ -119,17 +109,16 @@ const FindingsSection = () => {
               </div>
               
               {/* Logo */}
-              <div className="mb-3 h-10 flex items-center">
-                {bounty.isImage ? (
+              <div className="mb-3 h-12 flex items-center">
+                {bounty.isComponent ? (
+                  <bounty.Logo />
+                ) : (
                   <img 
                     src={bounty.logo} 
                     alt={bounty.name} 
-                    className="w-10 h-10 object-contain brightness-0 invert opacity-80 group-hover:opacity-100 transition-opacity"
+                    className="w-10 h-10 object-contain"
+                    style={{ filter: bounty.name === 'UBER' ? 'invert(1)' : 'none' }}
                   />
-                ) : (
-                  <div style={{ color: bounty.color }} className="opacity-80 group-hover:opacity-100 transition-opacity">
-                    {bounty.Logo && <bounty.Logo />}
-                  </div>
                 )}
               </div>
               
