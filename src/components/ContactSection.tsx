@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Radar, Target, Globe, Code, ShieldAlert, Search, Bug, Skull, Network, Scan, KeyRound, Terminal, Fingerprint, Crosshair, Zap } from 'lucide-react';
+import { Radar, Target, Globe, Code, ShieldAlert, Search, Bug, Skull, Network, Scan, KeyRound, Terminal, Fingerprint, Crosshair, Zap, Server } from 'lucide-react';
 import ScrambleText from './ScrambleText';
 import SpaceInvaders from './SpaceInvaders';
 import xLogo from '@/assets/logos/x.svg';
@@ -41,6 +41,7 @@ const toolCategories = [
     tools: [
       { name: 'BLIND XSS', icon: Code },
       { name: 'CORS', icon: Globe },
+      { name: 'SSRF', icon: Server },
       { name: 'FFUF', icon: Crosshair },
     ]
   },
