@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { QRCodeSVG } from 'qrcode.react';
 import ScrambleText from './ScrambleText';
 import SpaceInvaders from './SpaceInvaders';
 
@@ -137,12 +136,12 @@ const ContactSection = () => {
               SCAN_TO_CONTACT
             </span>
             <div className="bg-white p-3 w-fit">
-              <QRCodeSVG 
-                value="mailto:rainkode@protonmail.com" 
-                size={140}
-                bgColor="#ffffff"
-                fgColor="#000000"
-                level="M"
+              <img 
+                src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=mailto:rainkode@protonmail.com"
+                alt="QR Code - Scan to email rainkode@protonmail.com"
+                width={140}
+                height={140}
+                className="block"
               />
             </div>
           </motion.div>
