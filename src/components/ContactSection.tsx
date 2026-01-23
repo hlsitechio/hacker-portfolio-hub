@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion';
 import ScrambleText from './ScrambleText';
 import SpaceInvaders from './SpaceInvaders';
+import xLogo from '@/assets/logos/x.png';
 
 const links = [
   { label: 'HACKERONE', value: '@rainkode', href: 'https://hackerone.com/rainkode' },
-  { label: 'X', value: '@rainkode174818', href: 'https://x.com/rainkode174818' },
+  { label: 'X', value: 'rainkode', href: 'https://x.com/rainkode174818', isLogo: true },
   { label: 'EMAIL', value: 'rainkode@protonmail.com', href: 'mailto:rainkode@protonmail.com' },
 ];
 
@@ -101,9 +102,13 @@ const ContactSection = () => {
                 <span className="text-xs text-muted-foreground tracking-widest block mb-1">
                   {link.label}
                 </span>
-                <span className="text-2xl md:text-3xl font-display font-bold text-foreground group-hover:text-primary transition-colors">
-                  <ScrambleText text={link.value} scrambleOnHover />
-                </span>
+                {link.isLogo ? (
+                  <img src={xLogo} alt="X" className="h-10 md:h-14 w-auto invert group-hover:opacity-80 transition-opacity" />
+                ) : (
+                  <span className="text-2xl md:text-3xl font-display font-bold text-foreground group-hover:text-primary transition-colors">
+                    <ScrambleText text={link.value} scrambleOnHover />
+                  </span>
+                )}
               </motion.a>
             ))}
           </div>
