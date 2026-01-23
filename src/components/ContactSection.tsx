@@ -133,7 +133,7 @@ const ContactSection = () => {
               viewport={{ once: true }}
               className="text-lg opacity-80 max-w-md"
             >
-              Open for private bug bounty programs, security consulting, and penetration testing engagements.
+              Open for private bug bounty programs, collaboration, fully private, no contract — pay me with bounty. Free first recon with my own private tools.
             </motion.p>
 
             {/* OS & Environment Section */}
