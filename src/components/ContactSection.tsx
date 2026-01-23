@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Radar, Target, Globe, Code, ShieldAlert, Search, Bug, Skull, Network, Scan, KeyRound, Terminal, Fingerprint, Crosshair, Zap, Server } from 'lucide-react';
+import { Radar, Target, Globe, Code, ShieldAlert, Search, Bug, Skull, Network, Scan, KeyRound, Terminal, Fingerprint, Crosshair, Zap, Server, FileCode } from 'lucide-react';
 import ScrambleText from './ScrambleText';
 import SpaceInvaders from './SpaceInvaders';
 import xLogo from '@/assets/logos/x.svg';
@@ -34,6 +34,7 @@ const toolCategories = [
       { name: 'METASPLOIT', icon: Skull },
       { name: 'BURP SUITE', icon: Bug },
       { name: 'SQLMAP', icon: Terminal },
+      { name: 'BLACK HAT PYTHON', icon: FileCode },
     ]
   },
   {
