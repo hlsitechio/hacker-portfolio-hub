@@ -15,7 +15,7 @@ const MarqueeBar = () => {
     const fetchHNFeed = async () => {
       try {
         // Using a CORS proxy to fetch Hacker News RSS
-        const response = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://news.ycombinator.com/rss&count=15');
+        const response = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://hnrss.org/frontpage');
         const data = await response.json();
         
         if (data.status === 'ok' && data.items) {
