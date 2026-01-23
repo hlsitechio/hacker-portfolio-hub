@@ -18,7 +18,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-transparent crt relative">
+    <div className="min-h-screen bg-transparent relative">
       <MatrixBackground />
       <CustomCursor />
       
@@ -33,8 +33,6 @@ const Index = () => {
           <Footer />
         </main>
       )}
-
-      <div className="noise" />
     </div>
   );
 };
