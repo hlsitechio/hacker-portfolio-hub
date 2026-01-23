@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Radar, Target, Globe, Code, ShieldAlert } from 'lucide-react';
+import { Radar, Target, Globe, Code, ShieldAlert, Search, Bug, Skull } from 'lucide-react';
 import ScrambleText from './ScrambleText';
 import SpaceInvaders from './SpaceInvaders';
 import xLogo from '@/assets/logos/x.svg';
@@ -16,6 +16,9 @@ const tools = [
   { name: 'CORS', icon: Globe },
   { name: 'BLIND XSS', icon: Code },
   { name: 'AUTH VULN', icon: ShieldAlert },
+  { name: 'SHODAN', icon: Search },
+  { name: 'BURP', icon: Bug },
+  { name: 'METASPLOIT', icon: Skull },
 ];
 
 const ContactSection = () => {
