@@ -223,11 +223,18 @@ const ContactSection = () => {
                 whileHover={{ x: 10 }}
                 className="group block border-b border-border py-6 transition-all hover:border-primary"
               >
-                <span className="text-xs text-muted-foreground tracking-widest block mb-1">
-                  {link.label}
-                </span>
+                {!link.isLogo && (
+                  <span className="text-xs text-muted-foreground tracking-widest block mb-1">
+                    {link.label}
+                  </span>
+                )}
                 {link.isLogo ? (
-                  <img src={xLogo} alt="X" className="h-10 md:h-14 w-auto invert group-hover:opacity-80 transition-opacity" />
+                  <div className="flex items-center gap-4">
+                    <img src={xLogo} alt="X" className="h-10 md:h-14 w-auto invert group-hover:opacity-80 transition-opacity" />
+                    <span className="text-2xl md:text-3xl font-display font-bold text-foreground group-hover:text-primary transition-colors">
+                      <ScrambleText text="@rainkode" scrambleOnHover />
+                    </span>
+                  </div>
                 ) : (
                   <span className="text-2xl md:text-3xl font-display font-bold text-foreground group-hover:text-primary transition-colors">
                     <ScrambleText text={link.value} scrambleOnHover />
@@ -237,27 +244,11 @@ const ContactSection = () => {
             ))}
           </div>
 
-          {/* PGP Key */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            viewport={{ once: true }}
-            className="mt-12 p-4 bg-card border border-border"
-          >
-            <span className="text-xs text-muted-foreground tracking-widest block mb-2">
-              PGP_FINGERPRINT
-            </span>
-            <code className="text-xs text-foreground break-all font-mono">
-              XXXX XXXX XXXX XXXX XXXX XXXX XXXX XXXX XXXX XXXX
-            </code>
-          </motion.div>
-
           {/* QR Code for Email */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
             viewport={{ once: true }}
             className="mt-8 p-4 bg-card border border-border"
           >
