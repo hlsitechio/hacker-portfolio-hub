@@ -1,6 +1,18 @@
 import { motion } from 'framer-motion';
 import MarqueeBar from './MarqueeBar';
 
+// Import platform logos
+import hackeroneLogo from '@/assets/logos/hackerone.svg';
+import bugcrowdLogo from '@/assets/logos/bugcrowd.svg';
+import intigritiLogo from '@/assets/logos/intigriti.svg';
+
+// Immunefi logo SVG component (not available in SimpleIcons)
+const ImmunefiLogo = () => (
+  <svg viewBox="0 0 24 24" className="w-8 h-8" fill="#5865F2">
+    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.4c5.302 0 9.6 4.298 9.6 9.6s-4.298 9.6-9.6 9.6S2.4 17.302 2.4 12 6.698 2.4 12 2.4zm0 3.6a6 6 0 100 12 6 6 0 000-12zm0 2.4a3.6 3.6 0 110 7.2 3.6 3.6 0 010-7.2z"/>
+  </svg>
+);
+
 const HeroSection = () => {
   return (
     <section className="min-h-screen relative flex flex-col bg-background/80 backdrop-blur-sm">
@@ -79,10 +91,10 @@ const HeroSection = () => {
           </motion.div>
           <div className="flex flex-col gap-3">
             {[
-              { name: 'HACKERONE', color: 'from-[#494649] to-[#1a1a1a]', accent: '#00b81a', icon: 'H1' },
-              { name: 'BUGCROWD', color: 'from-[#f26722] to-[#1a1a1a]', accent: '#f26722', icon: 'BC' },
-              { name: 'IMMUNEFI', color: 'from-[#5865F2] to-[#1a1a1a]', accent: '#5865F2', icon: 'IM' },
-              { name: 'INTIGRITI', color: 'from-[#00c2b8] to-[#1a1a1a]', accent: '#00c2b8', icon: 'IG' },
+              { name: 'HACKERONE', color: 'from-[#494649] to-[#1a1a1a]', accent: '#00b81a', logo: hackeroneLogo },
+              { name: 'BUGCROWD', color: 'from-[#f26722] to-[#1a1a1a]', accent: '#f26722', logo: bugcrowdLogo },
+              { name: 'IMMUNEFI', color: 'from-[#5865F2] to-[#1a1a1a]', accent: '#5865F2', Logo: ImmunefiLogo, isComponent: true },
+              { name: 'INTIGRITI', color: 'from-[#00c2b8] to-[#1a1a1a]', accent: '#00c2b8', logo: intigritiLogo },
             ].map((platform, index) => (
               <motion.div
                 key={platform.name}
@@ -102,12 +114,17 @@ const HeroSection = () => {
                   style={{ background: `radial-gradient(circle at center, ${platform.accent}, transparent 70%)` }}
                 />
                 
-                {/* Icon */}
-                <div 
-                  className="text-2xl md:text-3xl font-display font-black shrink-0"
-                  style={{ color: platform.accent }}
-                >
-                  {platform.icon}
+                {/* Logo */}
+                <div className="shrink-0 w-10 h-10 flex items-center justify-center">
+                  {platform.isComponent ? (
+                    <platform.Logo />
+                  ) : (
+                    <img 
+                      src={platform.logo} 
+                      alt={platform.name} 
+                      className="w-8 h-8 object-contain"
+                    />
+                  )}
                 </div>
                 
                 {/* Name */}
