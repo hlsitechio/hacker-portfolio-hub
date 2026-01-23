@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { QRCodeSVG } from 'qrcode.react';
 import ScrambleText from './ScrambleText';
 import SpaceInvaders from './SpaceInvaders';
 
@@ -122,6 +123,28 @@ const ContactSection = () => {
             <code className="text-xs text-foreground break-all font-mono">
               XXXX XXXX XXXX XXXX XXXX XXXX XXXX XXXX XXXX XXXX
             </code>
+          </motion.div>
+
+          {/* QR Code for Email */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            viewport={{ once: true }}
+            className="mt-8 p-4 bg-card border border-border"
+          >
+            <span className="text-xs text-muted-foreground tracking-widest block mb-3">
+              SCAN_TO_CONTACT
+            </span>
+            <div className="bg-white p-3 w-fit">
+              <QRCodeSVG 
+                value="mailto:rainkode@protonmail.com" 
+                size={140}
+                bgColor="#ffffff"
+                fgColor="#000000"
+                level="M"
+              />
+            </div>
           </motion.div>
         </div>
       </div>
