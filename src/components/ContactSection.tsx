@@ -103,7 +103,7 @@ const ContactSection = () => {
                   {link.label}
                 </span>
                 {link.isLogo ? (
-                  <img src={xLogo} alt="X" className="h-10 md:h-14 w-auto group-hover:opacity-80 transition-opacity" />
+                  <img src={xLogo} alt="X" className="h-10 md:h-14 w-auto invert group-hover:opacity-80 transition-opacity" />
                 ) : (
                   <span className="text-2xl md:text-3xl font-display font-bold text-foreground group-hover:text-primary transition-colors">
                     <ScrambleText text={link.value} scrambleOnHover />
