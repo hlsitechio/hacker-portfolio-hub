@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import ScrambleText from './ScrambleText';
+import SpaceInvaders from './SpaceInvaders';
 
 const links = [
   { label: 'HACKERONE', value: '@rainkode', href: 'https://hackerone.com/rainkode' },
@@ -14,14 +15,16 @@ const ContactSection = () => {
       <div className="border-animated h-1" />
       
       <div className="flex-1 grid lg:grid-cols-2">
-        {/* Left - CTA */}
+        {/* Left - CTA with Space Invaders background */}
         <motion.div 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="p-8 md:p-16 flex flex-col justify-center bg-primary"
+          className="relative p-8 md:p-16 flex flex-col justify-center bg-primary overflow-hidden"
         >
+          {/* Space Invaders game in background */}
+          <SpaceInvaders />
           <div className="text-primary-foreground">
             <motion.span 
               initial={{ opacity: 0, y: 20 }}
