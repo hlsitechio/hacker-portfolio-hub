@@ -155,10 +155,10 @@ const ContactSection = () => {
                           transition={{ duration: 0.2, delay: 1 + catIndex * 0.1 + index * 0.05 }}
                           viewport={{ once: true }}
                           whileHover={{ scale: 1.05, y: -2 }}
-                          className="flex items-center gap-2 px-3 py-2 bg-background/20 border border-primary-foreground/20 backdrop-blur-sm hover:border-primary-foreground/50 transition-colors"
+                          className="flex items-center gap-3 px-4 py-3 bg-background/20 border border-primary-foreground/20 backdrop-blur-sm hover:border-primary-foreground/50 transition-colors"
                         >
-                          <tool.icon className="w-5 h-5 text-primary-foreground" />
-                          <span className="text-[11px] tracking-wider text-primary-foreground/90 font-mono">{tool.name}</span>
+                          <tool.icon className="w-7 h-7 text-primary-foreground" />
+                          <span className="text-sm tracking-wider text-primary-foreground/90 font-mono">{tool.name}</span>
                         </motion.div>
                       ))}
                     </div>
