@@ -108,10 +108,10 @@ const ContactSection = () => {
                     transition={{ duration: 0.3, delay: 0.9 + index * 0.1 }}
                     viewport={{ once: true }}
                     whileHover={{ scale: 1.1, y: -2 }}
-                    className="flex flex-col items-center gap-1 p-3 bg-background/20 border border-primary-foreground/20 backdrop-blur-sm hover:border-primary-foreground/50 transition-colors"
+                    className="flex flex-col items-center gap-2 p-4 bg-background/20 border border-primary-foreground/20 backdrop-blur-sm hover:border-primary-foreground/50 transition-colors"
                   >
-                    <tool.icon className="w-6 h-6 text-primary-foreground" />
-                    <span className="text-[10px] tracking-wider text-primary-foreground/80 font-mono">{tool.name}</span>
+                    <tool.icon className="w-10 h-10 text-primary-foreground" />
+                    <span className="text-xs tracking-wider text-primary-foreground/80 font-mono">{tool.name}</span>
                   </motion.div>
                 ))}
               </div>
