@@ -1,17 +1,9 @@
 import { motion } from 'framer-motion';
-import { Radar, Target, Globe, Code, ShieldAlert, Search, Bug, Skull, Network, Scan, KeyRound, Terminal, Fingerprint, Crosshair, Zap, Server, FileCode } from 'lucide-react';
-import ScrambleText from './ScrambleText';
+import { Radar, Target, ShieldAlert, Search, Bug, Skull, Scan, Terminal, Fingerprint, Crosshair, Zap } from 'lucide-react';
 import SpaceInvaders from './SpaceInvaders';
-import xLogo from '@/assets/logos/x.svg';
 import kaliLogo from '@/assets/logos/kali.svg';
 import blackarchLogo from '@/assets/logos/blackarch.svg';
 import parrotLogo from '@/assets/logos/parrot.svg';
-
-const links = [
-  { label: 'HACKERONE', value: '@rainkode', href: 'https://hackerone.com/rainkode' },
-  { label: 'X', value: 'rainkode', href: 'https://x.com/rainkode174818', isLogo: true },
-  { label: 'EMAIL', value: 'rainkode@protonmail.com', href: 'mailto:rainkode@protonmail.com' },
-];
 
 const operatingSystems = [
   { name: 'KALI LINUX', logo: kaliLogo },
@@ -21,45 +13,29 @@ const operatingSystems = [
 
 const toolCategories = [
   {
+    category: 'CUSTOM',
+    tools: [
+      { name: 'D3BUGR', icon: Terminal },
+      { name: 'BOTHEAVEN', icon: Skull },
+      { name: 'SKILL SCANNER', icon: Scan },
+    ]
+  },
+  {
     category: 'RECON',
     tools: [
-      { name: 'NMAP', icon: Radar },
       { name: 'SHODAN', icon: Search },
-      { name: 'AMASS', icon: Network },
+      { name: 'NUCLEI', icon: Target },
+      { name: 'NMAP', icon: Radar },
       { name: 'SUBFINDER', icon: Fingerprint },
     ]
   },
   {
-    category: 'SCANNING',
+    category: 'OFFENSIVE',
     tools: [
-      { name: 'NUCLEI', icon: Target },
-      { name: 'NIKTO', icon: Scan },
-      { name: 'MASSCAN', icon: Zap },
-    ]
-  },
-  {
-    category: 'EXPLOITATION',
-    tools: [
-      { name: 'METASPLOIT', icon: Skull },
-      { name: 'BURP SUITE', icon: Bug },
-      { name: 'SQLMAP', icon: Terminal },
-      { name: 'BLACK HAT PYTHON', icon: FileCode },
-    ]
-  },
-  {
-    category: 'WEB_ATTACKS',
-    tools: [
-      { name: 'BLIND XSS', icon: Code },
-      { name: 'CORS', icon: Globe },
-      { name: 'SSRF', icon: Server },
-      { name: 'FFUF', icon: Crosshair },
-    ]
-  },
-  {
-    category: 'AUTH_BYPASS',
-    tools: [
-      { name: 'HYDRA', icon: KeyRound },
-      { name: 'AUTH VULN', icon: ShieldAlert },
+      { name: 'SQLMAP', icon: Bug },
+      { name: 'BURP SUITE', icon: Crosshair },
+      { name: 'FFUF', icon: Zap },
+      { name: 'METASPLOIT', icon: ShieldAlert },
     ]
   },
 ];
@@ -77,11 +53,11 @@ const ContactSection = () => {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="relative p-8 md:p-16 flex flex-col justify-center bg-primary overflow-hidden"
+          className="relative p-8 md:p-16 flex flex-col justify-center bg-gradient-to-br from-card via-background to-card overflow-hidden border-r border-border"
         >
           {/* Space Invaders game in background */}
           <SpaceInvaders />
-          <div className="text-primary-foreground">
+          <div className="text-foreground">
             <motion.span 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -121,7 +97,7 @@ const ContactSection = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.6 }}
                 viewport={{ once: true }}
-                className="block text-background"
+                className="block text-primary"
               >
                 TOGETHER
               </motion.span>
@@ -133,7 +109,7 @@ const ContactSection = () => {
               viewport={{ once: true }}
               className="text-lg opacity-80 max-w-md"
             >
-              Open for private bug bounty programs, collaboration, fully private, no contract — pay me with bounty. Free first recon with my own private tools.
+              Independent security researcher. Private bug bounty programs, penetration testing, and vulnerability research. Custom tooling. No contracts — results only.
             </motion.p>
 
             {/* OS & Environment Section */}
@@ -154,10 +130,10 @@ const ContactSection = () => {
                     transition={{ duration: 0.3, delay: 0.9 + index * 0.1 }}
                     viewport={{ once: true }}
                     whileHover={{ scale: 1.05, y: -2 }}
-                    className="flex items-center gap-3 px-4 py-3 bg-background/20 border border-primary-foreground/20 backdrop-blur-sm hover:border-primary-foreground/50 transition-colors"
+                    className="flex items-center gap-3 px-4 py-3 bg-muted/50 border border-border hover:border-primary/40 backdrop-blur-sm transition-colors"
                   >
                     <img src={os.logo} alt={os.name} className="w-8 h-8 object-contain" />
-                    <span className="text-sm tracking-wider text-primary-foreground/90 font-mono">{os.name}</span>
+                    <span className="text-sm tracking-wider text-foreground/90 font-mono">{os.name}</span>
                   </motion.div>
                 ))}
               </div>
@@ -181,7 +157,7 @@ const ContactSection = () => {
                     transition={{ duration: 0.4, delay: 1.1 + catIndex * 0.1 }}
                     viewport={{ once: true }}
                   >
-                    <span className="text-[10px] tracking-widest text-primary-foreground/50 block mb-2 font-mono">
+                    <span className="text-[10px] tracking-widest text-muted-foreground block mb-2 font-mono">
                       {'>'} {category.category}
                     </span>
                     <div className="flex flex-wrap gap-2">
@@ -193,10 +169,10 @@ const ContactSection = () => {
                           transition={{ duration: 0.2, delay: 1.2 + catIndex * 0.1 + index * 0.05 }}
                           viewport={{ once: true }}
                           whileHover={{ scale: 1.05, y: -2 }}
-                          className="flex items-center gap-3 px-4 py-3 bg-background/20 border border-primary-foreground/20 backdrop-blur-sm hover:border-primary-foreground/50 transition-colors"
+                          className="flex items-center gap-3 px-4 py-3 bg-muted/50 border border-border hover:border-primary/40 backdrop-blur-sm transition-colors"
                         >
-                          <tool.icon className="w-7 h-7 text-primary-foreground" />
-                          <span className="text-sm tracking-wider text-primary-foreground/90 font-mono">{tool.name}</span>
+                          <tool.icon className="w-7 h-7 text-foreground" />
+                          <span className="text-sm tracking-wider text-foreground/90 font-mono">{tool.name}</span>
                         </motion.div>
                       ))}
                     </div>
@@ -207,62 +183,118 @@ const ContactSection = () => {
           </div>
         </motion.div>
 
-        {/* Right - Links */}
-        <div className="p-8 md:p-16 flex flex-col justify-center bg-background/80">
-          <div className="space-y-0">
-            {links.map((link, index) => (
-              <motion.a
-                key={index}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.15 }}
-                viewport={{ once: true }}
-                whileHover={{ x: 10 }}
-                className="group block border-b border-border py-6 transition-all hover:border-primary"
-              >
-                {!link.isLogo && (
-                  <span className="text-xs text-muted-foreground tracking-widest block mb-1">
-                    {link.label}
-                  </span>
-                )}
-                {link.isLogo ? (
-                  <div className="flex items-center gap-4">
-                    <img src={xLogo} alt="X" className="h-10 md:h-14 w-auto invert group-hover:opacity-80 transition-opacity" />
-                    <span className="text-2xl md:text-3xl font-display font-bold text-foreground group-hover:text-primary transition-colors">
-                      <ScrambleText text="@rainkode" scrambleOnHover />
-                    </span>
+        {/* Right - Clean Contact Links */}
+        <div className="p-8 md:p-12 flex flex-col justify-center bg-background/95">
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="mb-10"
+          >
+            <span className="text-xs text-muted-foreground tracking-widest block mb-2">CONNECT</span>
+            <h3 className="text-3xl md:text-4xl font-display font-black text-foreground">
+              GET IN TOUCH
+            </h3>
+          </motion.div>
+
+          {/* Contact Links - Clean */}
+          <div className="space-y-6">
+            {/* HackerOne */}
+            <motion.a
+              href="https://hackerone.com/rainkode"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="group block p-5 border border-border hover:border-primary/50 transition-all"
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="text-[10px] text-muted-foreground tracking-widest mb-1">HACKERONE</div>
+                  <div className="text-xl font-display font-bold text-foreground group-hover:text-primary transition-colors">
+                    @rainkode
                   </div>
-                ) : (
-                  <span className="text-2xl md:text-3xl font-display font-bold text-foreground group-hover:text-primary transition-colors">
-                    <ScrambleText text={link.value} scrambleOnHover />
-                  </span>
-                )}
-              </motion.a>
-            ))}
+                  <div className="mt-2 text-xs text-muted-foreground">
+                    17 Valid Reports · 2x Hall of Fame
+                  </div>
+                </div>
+                <svg className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
+            </motion.a>
+
+            {/* Twitter/X */}
+            <motion.a
+              href="https://x.com/rainkode174818"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="group block p-5 border border-border hover:border-primary/50 transition-all"
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="text-[10px] text-muted-foreground tracking-widest mb-1">TWITTER / X</div>
+                  <div className="text-xl font-display font-bold text-foreground group-hover:text-primary transition-colors">
+                    @rainkode
+                  </div>
+                  <div className="mt-2 text-xs text-muted-foreground">
+                    Bug Bounty · Research · Write-ups
+                  </div>
+                </div>
+                <svg className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
+            </motion.a>
+
+            {/* Email */}
+            <motion.a
+              href="mailto:rainkode@protonmail.com"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="group block p-5 border border-border hover:border-primary/50 transition-all"
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="text-[10px] text-muted-foreground tracking-widest mb-1">EMAIL</div>
+                  <div className="text-lg md:text-xl font-display font-bold text-foreground group-hover:text-primary transition-colors">
+                    rainkode@protonmail.com
+                  </div>
+                  <div className="mt-2 text-xs text-muted-foreground">
+                    PGP Available · Private Programs Welcome
+                  </div>
+                </div>
+                <svg className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
+            </motion.a>
           </div>
 
-          {/* QR Code for Email */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+          {/* Status */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.5 }}
             viewport={{ once: true }}
-            className="mt-8 p-4 bg-card border border-border"
+            className="mt-10 pt-6 border-t border-border"
           >
-            <span className="text-xs text-muted-foreground tracking-widest block mb-3">
-              SCAN_TO_CONTACT
-            </span>
-            <div className="bg-white p-3 w-fit">
-              <img 
-                src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=mailto:rainkode@protonmail.com"
-                alt="QR Code - Scan to email rainkode@protonmail.com"
-                width={140}
-                height={140}
-                className="block"
-              />
+            <div className="flex items-center justify-between text-xs font-mono text-muted-foreground">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                <span>AVAILABLE FOR WORK</span>
+              </div>
+              <span>RESPONSE &lt; 24H</span>
             </div>
           </motion.div>
         </div>

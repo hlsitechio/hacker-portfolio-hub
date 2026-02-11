@@ -18,14 +18,14 @@ const CryptoLogo = () => (
 );
 
 const activeBounties = [
-  { name: 'COINBASE', color: '#0052FF', status: 'HUNTING', logo: coinbaseLogo },
-  { name: 'CRYPTO.COM', color: '#002D74', status: 'ACTIVE', Logo: CryptoLogo, isComponent: true },
-  { name: 'FACEBOOK', color: '#1877F2', status: 'HUNTING', logo: facebookLogo },
-  { name: 'AMAZON', color: '#FF9900', status: 'ACTIVE', logo: amazonLogo },
-  { name: 'NETFLIX', color: '#E50914', status: 'HUNTING', logo: netflixLogo },
-  { name: 'TESLA', color: '#CC0000', status: 'ACTIVE', logo: teslaLogo },
-  { name: 'UBER', color: '#FFFFFF', status: 'HUNTING', logo: uberLogo },
-  { name: 'META', color: '#0082FB', status: 'ACTIVE', logo: metaLogo },
+  { name: 'COINBASE', color: '#0052FF', status: 'INTEREST', logo: coinbaseLogo },
+  { name: 'CRYPTO.COM', color: '#002D74', status: 'INTEREST', Logo: CryptoLogo, isComponent: true },
+  { name: 'FACEBOOK', color: '#1877F2', status: 'INTEREST', logo: facebookLogo },
+  { name: 'AMAZON', color: '#FF9900', status: 'INTEREST', logo: amazonLogo },
+  { name: 'NETFLIX', color: '#E50914', status: 'INTEREST', logo: netflixLogo },
+  { name: 'TESLA', color: '#CC0000', status: 'INTEREST', logo: teslaLogo },
+  { name: 'UBER', color: '#FFFFFF', status: 'INTEREST', logo: uberLogo },
+  { name: 'META', color: '#0082FB', status: 'INTEREST', logo: metaLogo },
 ];
 
 const FindingsSection = () => {
@@ -41,13 +41,13 @@ const FindingsSection = () => {
           className="flex items-end justify-between border-b border-border pb-4"
         >
           <div>
-            <span className="text-xs text-muted-foreground tracking-widest block mb-2">FILE://CURRENT_TARGETS</span>
+            <span className="text-xs text-muted-foreground tracking-widest block mb-2">FILE://TARGET_WISHLIST</span>
             <h2 className="text-3xl md:text-5xl font-display font-black">
-              <ScrambleText text="LIVE BOUNTY ACTIVITIES" scrambleOnHover />
+              <ScrambleText text="PROGRAMS OF INTEREST" scrambleOnHover />
             </h2>
           </div>
           <div className="text-right hidden md:block">
-            <span className="text-xs text-muted-foreground">ACTIVE PROGRAMS</span>
+            <span className="text-xs text-muted-foreground">ON THE RADAR</span>
             <div className="text-2xl font-display font-bold text-primary">{activeBounties.length}</div>
           </div>
         </motion.div>

@@ -80,7 +80,7 @@ const SpaceInvaders = () => {
 
     // Draw pixel art invader
     const drawInvader = (x: number, y: number, type: number) => {
-      ctx.fillStyle = type % 2 === 0 ? '#00ff88' : '#00ffcc';
+      ctx.fillStyle = type % 2 === 0 ? '#a78bfa' : '#c4b5fd';
       const pixelSize = 3;
       
       // Classic space invader pattern
@@ -111,7 +111,7 @@ const SpaceInvaders = () => {
 
     // Draw player ship
     const drawPlayer = (x: number, y: number) => {
-      ctx.fillStyle = '#00ffff';
+      ctx.fillStyle = '#8b5cf6';
       const pixelSize = 3;
       
       const pattern = [
@@ -203,18 +203,18 @@ const SpaceInvaders = () => {
         });
 
         // Draw bullet
-        ctx.fillStyle = '#00ffff';
+        ctx.fillStyle = '#a78bfa';
         ctx.fillRect(bullet.x - 2, bullet.y, 4, 12);
-        
+
         return bullet.y > 0;
       });
 
       // Update and draw invader bullets
       invaderBullets = invaderBullets.filter(bullet => {
         bullet.y += bullet.dy;
-        
+
         // Draw bullet
-        ctx.fillStyle = '#ff0066';
+        ctx.fillStyle = '#7c3aed';
         ctx.fillRect(bullet.x - 2, bullet.y, 4, 12);
         
         return bullet.y < canvas.height;

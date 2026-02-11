@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import CustomCursor from '@/components/CustomCursor';
 import IntroSequence from '@/components/IntroSequence';
+import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
 import TerminalSection from '@/components/TerminalSection';
-import FindingsSection from '@/components/FindingsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import MatrixBackground from '@/components/MatrixBackground';
@@ -20,18 +19,25 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-transparent relative">
       <MatrixBackground />
-      <CustomCursor />
-      
+
       {showIntro && <IntroSequence onComplete={handleIntroComplete} />}
-      
+
       {showContent && (
-        <main className="animate-[fade-in_0.5s_ease-out]">
-          <HeroSection />
-          <TerminalSection />
-          <FindingsSection />
-          <ContactSection />
-          <Footer />
-        </main>
+        <>
+          <Navigation />
+          <main className="animate-[fade-in_0.5s_ease-out]">
+            <section id="hero">
+              <HeroSection />
+            </section>
+            <section id="terminal">
+              <TerminalSection />
+            </section>
+            <section id="contact">
+              <ContactSection />
+            </section>
+            <Footer />
+          </main>
+        </>
       )}
     </div>
   );

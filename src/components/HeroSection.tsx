@@ -1,180 +1,294 @@
+import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import MarqueeBar from './MarqueeBar';
 
-// Import platform logos
-import hackeroneLogo from '@/assets/logos/hackerone.svg';
-import bugcrowdLogo from '@/assets/logos/bugcrowd.svg';
-import intigritiLogo from '@/assets/logos/intigriti.svg';
+const CodeRainCanvas = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
-// Immunefi logo SVG component (not available in SimpleIcons)
-const ImmunefiLogo = () => (
-  <svg viewBox="0 0 24 24" className="w-8 h-8" fill="#5865F2">
-    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.4c5.302 0 9.6 4.298 9.6 9.6s-4.298 9.6-9.6 9.6S2.4 17.302 2.4 12 6.698 2.4 12 2.4zm0 3.6a6 6 0 100 12 6 6 0 000-12zm0 2.4a3.6 3.6 0 110 7.2 3.6 3.6 0 010-7.2z"/>
-  </svg>
-);
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const resizeCanvas = () => {
+      canvas.width = canvas.offsetWidth * 2;
+      canvas.height = canvas.offsetHeight * 2;
+      ctx.scale(2, 2);
+    };
+    resizeCanvas();
+
+    const chars = 'RAINKODE01アイウエオカキクケコ<>{}[]$#@&*';
+    const charArray = chars.split('');
+    const fontSize = 16;
+    const columns = Math.floor(canvas.offsetWidth / fontSize);
+    const drops: number[] = Array(columns).fill(1).map(() => Math.random() * -100);
+
+    const draw = () => {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
+
+      ctx.font = `${fontSize}px 'IBM Plex Mono', monospace`;
+
+      for (let i = 0; i < drops.length; i++) {
+        const char = charArray[Math.floor(Math.random() * charArray.length)];
+        const x = i * fontSize;
+        const y = drops[i] * fontSize;
+
+        // Dark purple gradient
+        const hue = 260 + (i / columns) * 30;
+        ctx.fillStyle = `hsla(${hue}, 60%, 55%, ${0.6 + Math.random() * 0.3})`;
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = `hsla(${hue}, 60%, 50%, 0.4)`;
+        ctx.fillText(char, x, y);
+
+        if (y > canvas.offsetHeight && Math.random() > 0.98) {
+          drops[i] = 0;
+        }
+        drops[i] += 0.5 + Math.random() * 0.5;
+      }
+
+      requestAnimationFrame(draw);
+    };
+
+    draw();
+    window.addEventListener('resize', resizeCanvas);
+    return () => window.removeEventListener('resize', resizeCanvas);
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full opacity-30"
+    />
+  );
+};
+
+// Tools Arsenal - Clean monochrome
+const tools = [
+  { name: 'BURP SUITE', level: 95 },
+  { name: 'NUCLEI', level: 90 },
+  { name: 'SQLMAP', level: 88 },
+  { name: 'FFUF', level: 85 },
+  { name: 'NMAP', level: 80 },
+  { name: 'METASPLOIT', level: 75 },
+];
+
+// Attack Vectors - Simple list
+const attackVectors = ['XSS', 'SQLi', 'SSRF', 'IDOR', 'AUTH BYPASS', 'RCE', 'CSRF', 'BAC'];
+
+// Languages
+const languages = ['PYTHON', 'JAVASCRIPT', 'BASH', 'GO', 'SQL'];
+
+const stats = [
+  { label: 'BUGS', value: '23' },
+  { label: 'VALID', value: '17' },
+  { label: 'HOF', value: '2' },
+  { label: 'BOUNTY', value: '$8K+' },
+];
 
 const HeroSection = () => {
   return (
-    <section className="min-h-screen relative flex flex-col bg-background/80 backdrop-blur-sm">
-      {/* Top bar */}
-      <motion.div 
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        className="border-b border-border p-4 flex justify-between items-center text-xs font-mono"
-      >
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-primary status-pulse" />
-            <span className="text-muted-foreground">ONLINE</span>
-          </div>
-          <span className="text-muted-foreground hidden sm:block">SYS.TIME: {new Date().toLocaleTimeString()}</span>
-        </div>
-        <div className="text-muted-foreground">
-          LOC: <span className="text-primary">UNDISCLOSED</span>
-        </div>
-      </motion.div>
+    <section className="min-h-screen relative flex flex-col pt-16">
+      {/* RAINKODE Hero - Full width dramatic section */}
+      <div className="relative flex-1 flex flex-col items-center justify-center py-20 overflow-hidden">
+        <CodeRainCanvas />
 
-      <MarqueeBar />
+        {/* Glow effects */}
+        <div className="absolute inset-0 bg-gradient-radial from-primary/10 via-transparent to-transparent pointer-events-none" />
 
-      {/* Main hero content */}
-      <div className="flex-1 grid lg:grid-cols-2 gap-0">
-        {/* Left side - Info */}
-        <div className="p-8 md:p-16 flex flex-col justify-center border-r border-border">
-          <div className="space-y-6">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-            >
-              <span className="text-xs text-muted-foreground block mb-2">CODENAME</span>
-              <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-black tracking-tight cyberpunk-gradient-text">
-                RAINKODE
-              </h1>
-            </motion.div>
-            
-            <motion.div 
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="grid grid-cols-2 gap-4 text-sm"
-            >
-              <div>
-                <span className="text-muted-foreground block text-xs mb-1">SPECIALIZATION</span>
-                <span className="text-foreground">Web Application Security</span>
-              </div>
-              <div>
-                <span className="text-muted-foreground block text-xs mb-1">STATUS</span>
-                <span className="text-primary">Available for Private Programs</span>
-              </div>
-              <div>
-                <span className="text-muted-foreground block text-xs mb-1">RANK</span>
-                <span className="text-foreground">Top 1% HackerOne</span>
-              </div>
-              <div>
-                <span className="text-muted-foreground block text-xs mb-1">THREAT LEVEL</span>
-                <span className="text-destructive">CRITICAL</span>
-              </div>
-            </motion.div>
-          </div>
-        </div>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="relative z-10 text-center"
+        >
+          <motion.span
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="text-xs text-muted-foreground tracking-[0.3em] block mb-4"
+          >
+            SECURITY RESEARCHER // BUG BOUNTY HUNTER
+          </motion.span>
 
-        {/* Right side - Platforms */}
-        <div className="p-8 md:p-16 flex flex-col justify-center bg-card/70">
+          <motion.h1
+            className="text-7xl sm:text-8xl md:text-9xl lg:text-[12rem] font-display font-black tracking-tight leading-none"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            style={{
+              background: 'linear-gradient(135deg, #8b5cf6 0%, #a855f7 50%, #7c3aed 100%)',
+              backgroundSize: '200% 200%',
+              WebkitBackgroundClip: 'text',
+              backgroundClip: 'text',
+              color: 'transparent',
+              textShadow: '0 0 80px rgba(139,92,246,0.4), 0 0 120px rgba(124,58,237,0.2)',
+              animation: 'gradient-slide 3s ease-in-out infinite',
+            }}
+          >
+            RAINKODE
+          </motion.h1>
+
+          {/* Canadian badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="mb-6"
+            transition={{ duration: 0.5, delay: 0.8 }}
+            className="flex items-center justify-center gap-3 mt-6"
           >
-            <span className="text-xs text-muted-foreground tracking-widest uppercase">Active On</span>
+            <span className="text-4xl">🇨🇦</span>
+            <div className="text-left">
+              <span className="text-lg font-display font-bold text-red-500 tracking-wider block">
+                TRUE NORTH DEFENDER
+              </span>
+              <span className="text-xs text-muted-foreground font-mono">
+                PROTECTING THE DIGITAL FRONTIER
+              </span>
+            </div>
           </motion.div>
-          <div className="flex flex-col gap-3">
-            {[
-              { name: 'HACKERONE', color: 'from-[#494649] to-[#1a1a1a]', accent: '#00b81a', logo: hackeroneLogo },
-              { name: 'BUGCROWD', color: 'from-[#f26722] to-[#1a1a1a]', accent: '#f26722', logo: bugcrowdLogo },
-              { name: 'IMMUNEFI', color: 'from-[#5865F2] to-[#1a1a1a]', accent: '#5865F2', Logo: ImmunefiLogo, isComponent: true },
-              { name: 'INTIGRITI', color: 'from-[#00c2b8] to-[#1a1a1a]', accent: '#00c2b8', logo: intigritiLogo },
-            ].map((platform, index) => (
-              <motion.div
-                key={platform.name}
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ 
-                  duration: 0.5, 
-                  delay: 0.8 + index * 0.2,
-                  ease: [0.25, 0.46, 0.45, 0.94]
-                }}
-                whileHover={{ scale: 1.02, x: -8, boxShadow: `0 0 30px ${platform.accent}40` }}
-                className={`relative group bg-gradient-to-br ${platform.color} border border-border/50 p-4 cursor-pointer overflow-hidden flex items-center gap-4`}
-              >
-                {/* Glow effect */}
-                <div 
-                  className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-300"
-                  style={{ background: `radial-gradient(circle at center, ${platform.accent}, transparent 70%)` }}
-                />
-                
-                {/* Logo */}
-                <div className="shrink-0 w-10 h-10 flex items-center justify-center">
-                  {platform.isComponent ? (
-                    <platform.Logo />
-                  ) : (
-                    <img 
-                      src={platform.logo} 
-                      alt={platform.name} 
-                      className="w-8 h-8 object-contain"
+        </motion.div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.5 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        >
+          <motion.span
+            animate={{ y: [0, 5, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+            className="text-xs text-muted-foreground tracking-widest"
+          >
+            SCROLL
+          </motion.span>
+          <motion.div
+            animate={{ scaleY: [1, 1.3, 1], opacity: [0.5, 1, 0.5] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+            className="w-px h-8 bg-gradient-to-b from-primary to-transparent"
+          />
+        </motion.div>
+      </div>
+
+      {/* Clean Minimal Dashboard */}
+      <div className="bg-background/95 border-t border-border">
+        {/* Stats bar - Simple */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="grid grid-cols-4 border-b border-border"
+        >
+          {stats.map((stat, i) => (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.4, delay: i * 0.1 }}
+              viewport={{ once: true }}
+              className="p-6 md:p-8 border-r border-border last:border-r-0 text-center"
+            >
+              <div className="text-[10px] text-muted-foreground tracking-widest mb-2">{stat.label}</div>
+              <div className="text-3xl md:text-4xl font-display font-black text-foreground">
+                {stat.value}
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Two Column Layout */}
+        <div className="grid lg:grid-cols-2">
+          {/* Tools - Clean bars */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="p-8 md:p-10 border-r border-border"
+          >
+            <span className="text-xs text-muted-foreground tracking-widest block mb-6">TOOLS</span>
+            <div className="space-y-4">
+              {tools.map((tool, i) => (
+                <motion.div
+                  key={tool.name}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.3, delay: i * 0.05 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm font-mono text-foreground">{tool.name}</span>
+                    <span className="text-xs text-muted-foreground">{tool.level}%</span>
+                  </div>
+                  <div className="h-1 bg-border overflow-hidden">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      whileInView={{ width: `${tool.level}%` }}
+                      transition={{ duration: 0.8, delay: i * 0.05 }}
+                      viewport={{ once: true }}
+                      className="h-full bg-primary"
                     />
-                  )}
-                </div>
-                
-                {/* Name */}
-                <div className="text-sm font-mono text-foreground tracking-wider flex-1">
-                  {platform.name}
-                </div>
-                
-                {/* Status indicator */}
-                <div className="flex items-center gap-2">
-                  <div 
-                    className="w-2 h-2 rounded-full animate-pulse"
-                    style={{ backgroundColor: platform.accent }}
-                  />
-                  <span className="text-xs text-muted-foreground">ACTIVE</span>
-                </div>
-                
-                {/* Slide-in accent bar */}
-                <motion.div 
-                  className="absolute left-0 top-0 bottom-0 w-1"
-                  initial={{ scaleY: 0 }}
-                  animate={{ scaleY: 1 }}
-                  transition={{ duration: 0.3, delay: 1.1 + index * 0.2 }}
-                  style={{ backgroundColor: platform.accent, transformOrigin: 'top' }}
-                />
-              </motion.div>
-            ))}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Right side - Vectors & Languages */}
+          <div className="p-8 md:p-10">
+            {/* Attack Vectors - Simple tags */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="mb-10"
+            >
+              <span className="text-xs text-muted-foreground tracking-widest block mb-4">SPECIALIZATIONS</span>
+              <div className="flex flex-wrap gap-2">
+                {attackVectors.map((vector, i) => (
+                  <motion.span
+                    key={vector}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.2, delay: i * 0.03 }}
+                    viewport={{ once: true }}
+                    className="px-3 py-1.5 text-xs font-mono border border-border text-muted-foreground hover:text-foreground hover:border-primary/50 transition-colors"
+                  >
+                    {vector}
+                  </motion.span>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Languages - Simple tags */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <span className="text-xs text-muted-foreground tracking-widest block mb-4">LANGUAGES</span>
+              <div className="flex flex-wrap gap-2">
+                {languages.map((lang, i) => (
+                  <motion.span
+                    key={lang}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.2, delay: i * 0.03 }}
+                    viewport={{ once: true }}
+                    className="px-3 py-1.5 text-xs font-mono border border-border text-muted-foreground hover:text-foreground hover:border-primary/50 transition-colors"
+                  >
+                    {lang}
+                  </motion.span>
+                ))}
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>
-
-      {/* Scroll indicator */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-      >
-        <motion.span 
-          animate={{ y: [0, 5, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          className="text-xs text-muted-foreground tracking-widest"
-        >
-          SCROLL
-        </motion.span>
-        <motion.div 
-          animate={{ scaleY: [1, 1.3, 1], opacity: [0.5, 1, 0.5] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          className="w-px h-8 bg-gradient-to-b from-primary to-transparent" 
-        />
-      </motion.div>
     </section>
   );
 };
